@@ -1,8 +1,7 @@
 use glob::glob;
 use serde::Deserialize;
-use serde_json;
 use std::os::unix::fs::PermissionsExt;
-use std::{f32::consts::E, fs, vec};
+use std::{fs};
 
 // load the regex-fules.json file to provide configs
 const JSON: &str = include_str!("../rules.json");
@@ -61,7 +60,7 @@ fn main() {
             }
         }
         for file in &rule.required_files {
-            if !seen_files.contains(&file) {
+            if !seen_files.contains(file) {
                 failed = true;
                 println!(
                     "[FAIL] required file {file} not found in {}",
